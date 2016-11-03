@@ -1,0 +1,18 @@
+language: python
+
+cache:
+    pip
+python:
+  - 2.7
+  - pypy
+env:
+    - pep8-unit
+
+matrix:
+  exclude:
+    - python: 2.7
+      env: pep8-unit
+
+script:
+  - tox -e pep8
+  - tox -e py27
