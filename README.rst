@@ -4,4 +4,6 @@ My-dev
     :target: https://travis-ci.org/esikachev/my-dev
 
 
+**My-dev information**
+
 This is a utility for developers.
