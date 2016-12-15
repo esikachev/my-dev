@@ -1,19 +1,29 @@
-import json
+from flask import Flask
 import requests
+
+app = Flask(__name__)
 
 
 class Users(object):
 
-    def create(self, **kwargs):
+    @app.route('/users', methods=['POST'])
+    def create(self, data=None):
         """Create new user"""
         url = 'http://localhost:5000/users'
-        for (key, value) in kwargs.items():
-            data += (key, value)
-        create_user = requests.post(url, data=json.dump(data))
-        return create_user.json()
+        create_user_request = requests.post(url, data=data)
+        request_status = (create_user_request.status_code == requests.codes.ok)
+        if request_status is False:
+            raise Exception("Bad request in creating the user")
+        else:
+            return create_user_request
 
+    @app.route('/get_user', methods=['GET'])
     def get(self, user_id):
         """Get user information"""
-        url = 'http://localhost:5000/users/%s' % user_id
-        get_user = requests.get(url)
-        return get_user.json()
+        url = 'http://localhost:5000/users/ %s' % user_id
+        get_user_request = requests.get(url)
+        request_status = (get_user_request.status_code == requests.codes.ok)
+        if request_status is False:
+            raise Exception("Bad request in getting the user")
+        else:
+            return get_user_request
