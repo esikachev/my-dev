@@ -27,3 +27,4 @@ class Users(object):
             raise Exception("Bad request in getting the user")
         else:
             return get_user_request
+g
