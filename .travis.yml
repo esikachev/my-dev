@@ -19,11 +19,11 @@ matrix:
       env: TOX_ENV=functional
 
 script:
-  - set -xe
   - if [[ $TOX_ENV == 'functional' ]];
     then
       cd my-dev-server;
       sed -i '/log_dir=/c\log_dir=/home/travis/build/esikachev/my-dev-client' etc/my-dev-server/my-dev-server.conf;
+      cat etc/my-dev-server/my-dev-server.conf;
       tox -e venv -- my-dev-migrate --config-file etc/my-dev-server/my-dev-server.conf;
       tmux new -d 'tox -e venv -- my-dev-server >> my-dev-server-logs';
       cd -;
@@ -31,4 +31,6 @@ script:
   - tox -e "${TOX_ENV}"
 
 after_script:
-  - "cat my-dev-server/my-dev-server-logs"
+  - if [ -f my-dev-server/my-dev-server-logs ]; then
+      cat my-dev-server/my-dev-server-logs
+    fi
