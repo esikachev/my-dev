@@ -9,14 +9,17 @@ URL = 'http://localhost:5000'
 
 class Client(object):
 
-    def __init__(self):
-        self.send_post = post
-        self.send_get = get
-        self.send_delete = delete
+    def _post(self, *args, **kwargs):
+        return post(args, kwargs)
+
+    def _get(self, *args):
+        return get(args)
+
+    def _delete(self, *args):
+        return delete(args)
 
     def post(self, prefix, data):
-        create_request = self.send_post(self._get_url(prefix),
-                                        json=data)
+        create_request = self._post(self._get_url(prefix), json=data)
         request_status = (create_request.status_code == codes.ok)
         if request_status:
             return create_request.json()
@@ -24,7 +27,7 @@ class Client(object):
             raise exc.RequestException("Bad POST request")
 
     def get(self, prefix, id):
-        get_request = self.send_get(self._get_url(prefix, data=id))
+        get_request = self._get(self._get_url(prefix, data=id))
         request_status = (get_request.status_code == codes.ok)
         if request_status:
             return get_request.json()
@@ -32,7 +35,7 @@ class Client(object):
             raise exc.RequestException("Bad GET request")
 
     def delete(self, prefix, id):
-        delete_request = self.send_delete(self._get_url(prefix, data=id))
+        delete_request = self._delete(self._get_url(prefix, data=id))
         request_status = (delete_request.status_code == codes.ok)
         if request_status:
             return delete_request.json()
