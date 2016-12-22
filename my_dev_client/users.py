@@ -1,29 +1,24 @@
-from flask import Flask
-import requests
-
-app = Flask(__name__)
+import client
 
 
 class Users(object):
 
-    @app.route('/users', methods=['POST'])
-    def create(self, data=None):
-        """Create new user"""
-        url = 'http://localhost:5000/users'
-        create_user_request = requests.post(url, data=data)
-        request_status = (create_user_request.status_code == requests.codes.ok)
-        if request_status is False:
-            raise Exception("Bad request in creating the user")
-        else:
-            return create_user_request
+    def __init__(self):
+        self.client = client.Client()
+        self.prefix = '/users'
 
-    @app.route('/get_user', methods=['GET'])
+    def create(self, username, email):
+        data = {
+            "username": username,
+            "email": email
+        }
+        request_create = self.client.post(self.prefix, data=data)
+        return request_create
+
     def get(self, user_id):
-        """Get user information"""
-        url = 'http://localhost:5000/users/ %s' % user_id
-        get_user_request = requests.get(url)
-        request_status = (get_user_request.status_code == requests.codes.ok)
-        if request_status is False:
-            raise Exception("Bad request in getting the user")
-        else:
-            return get_user_request
+        request_get = self.client.get(self.prefix, user_id)
+        return request_get
+
+    def delete(self, user_id):
+        request_delete = self.client.delete(self.prefix, user_id)
+        return request_delete
