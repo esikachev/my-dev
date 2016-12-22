@@ -10,13 +10,13 @@ URL = 'http://localhost:5000'
 class Client(object):
 
     def _post(self, *args, **kwargs):
-        return post(args, kwargs)
+        return post(*args, **kwargs)
 
     def _get(self, *args):
-        return get(args)
+        return get(*args)
 
     def _delete(self, *args):
-        return delete(args)
+        return delete(*args)
 
     def post(self, prefix, data):
         create_request = self._post(self._get_url(prefix), json=data)
