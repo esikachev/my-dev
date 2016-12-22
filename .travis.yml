@@ -2,6 +2,11 @@ language: python
 
 before_install:
   - pip install tox
+  - git clone https://github.com/esikachev/my-dev-server
+  - mysql -e 'CREATE DATABASE IF NOT EXISTS my_dev;'
+
+services:
+  - mysql
 
 matrix:
   include:
@@ -9,7 +14,17 @@ matrix:
       env: TOX_ENV=pep8
     - python: 2.7
       env: TOX_ENV=py27
+    - python: 2.7
+      env: TOX_ENV=functional
 
 script:
+  - ARGS=''
+  - if [[ $TOX_ENV == 'functional' ]];
+    then
+      cd my-dev-server;
+      sed -i '/log_dir=/c\log_dir=/home/travis/build/esikachev/my-dev-server' etc/my-dev-server/my-dev-server.conf;
+      tox -e venv -- my-dev-migrate --config-file etc/my-dev-server/my-dev-server.conf;
+      tmux new -d 'tox -e venv -- my-dev-server >> my-dev-server-logs';
+      cd -;
+    fi
   - tox -e "${TOX_ENV}"
-
