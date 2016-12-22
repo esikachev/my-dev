@@ -32,5 +32,5 @@ script:
 
 after_script:
   - if [ -f my-dev-server/my-dev-server-logs ]; then
-      cat my-dev-server/my-dev-server-logs
+      cat my-dev-server/my-dev-server-logs;
     fi
