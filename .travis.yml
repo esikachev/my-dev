@@ -2,7 +2,7 @@ language: python
 
 before_install:
   - pip install tox
-  - apt install -y tmux
+  - apt-get install -y tmux
   - git clone https://github.com/esikachev/my-dev-server
   - mysql -e 'CREATE DATABASE IF NOT EXISTS my_dev;'
 
