@@ -28,3 +28,6 @@ script:
       cd -;
     fi
   - tox -e "${TOX_ENV}"
+
+after_script:
+  - "cat my-dev-server/my-dev-server-logs"
