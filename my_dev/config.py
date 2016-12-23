@@ -1,3 +1,4 @@
+import os
 import sys
 
 from oslo_config import cfg
@@ -21,4 +22,7 @@ def list_opts():
 
 
 def parse_config():
-    CONF(project='my-dev', default_config_files=sys.argv[2:])
+    for location in (os.curdir, os.path.expanduser("~")):
+        config = os.path.join(location, ".my.conf")
+        if os.path.isfile(config):
+            CONF(project='my-dev', default_config_files=[config])
