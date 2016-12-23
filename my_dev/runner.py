@@ -23,7 +23,6 @@ def main():
                         help='Specify password')
     parser.add_argument('--email', '-e', default=None, nargs='?',
                         help='Specify e-mail')
-     
     args = parser.parse_args()
 
     command_arguments = args.command
@@ -39,5 +38,4 @@ def main():
 
         user = users.Users()
         user.create(username, password, email)
-       
         utils.write_to_config(username, CONF.host)
