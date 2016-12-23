@@ -14,14 +14,17 @@ This is a utility for developers.
 1. Clone project
 
 2. Install project. You have a 2 ways:
-   2.1 Install in system
+   
+2.1 Install in system
+
 .. sourcecode:: console
    
     $ cd my-dev-client/
     $ sudo pip install .
 ..
 
-   2.2 Install in virtualenv    
+2.2 Install in virtualenv    
+
 .. sourcecode:: console
 
     $ tox -e venv --notest
