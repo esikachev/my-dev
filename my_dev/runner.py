@@ -12,4 +12,4 @@ def main():
 
     command_arguments = args.command
 
-    os.system(' '.join(command_arguments))
+    os.system(' '.join([command_arguments]))
