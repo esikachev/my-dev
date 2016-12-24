@@ -1,6 +1,6 @@
 import testtools
 
-import my_dev_client.users as users
+import my_dev.users as users
 
 
 class TestClient(testtools.TestCase):
