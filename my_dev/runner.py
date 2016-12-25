@@ -40,3 +40,5 @@ def main():
         user.create(username, password, email)
        
         utils.write_to_config(username, CONF.host)
+
+        print "Account created. Config too."
