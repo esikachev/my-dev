@@ -8,6 +8,7 @@ from my_dev import config
 from my_dev import users
 from my_dev import utils
 
+config.parse_config()
 CONF = cfg.CONF
 
 
@@ -33,7 +34,7 @@ def main():
 
     if init:
         username = username if username else raw_input("Insert the username: ")
-        password = password if password else getpass()
+        password = getpass()
         email = email if email else raw_input("Insert the e-mail: ")
 
         user = users.Users()
