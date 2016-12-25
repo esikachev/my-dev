@@ -10,6 +10,6 @@ class TestClient(testtools.TestCase):
         self.user = users.Users()
 
     def test_client(self):
-        user = self.user.create('test-user', 'user@user.com')
+        user = self.user.create('test-user', 'user@user.com', 'password')
         self.user.get(user['id'])
         self.user.delete(user['id'])
