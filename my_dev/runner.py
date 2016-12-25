@@ -30,11 +30,10 @@ def main():
     init = args.init
     username = args.username
     email = args.email
-    password = args.password
-
+    
     if init:
         username = username if username else raw_input("Insert the username: ")
-        password = password if password else getpass()
+        password = getpass()
         email = email if email else raw_input("Insert the e-mail: ")
 
         user = users.Users()
