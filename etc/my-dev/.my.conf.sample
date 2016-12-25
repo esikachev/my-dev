@@ -1,0 +1,3 @@
+[DEFAULT]
+host=http://localhost:5000
+username=user
