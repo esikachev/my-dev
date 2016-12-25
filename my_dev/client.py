@@ -5,6 +5,7 @@ from requests import exceptions as exc
 from requests import post
 
 URL = 'http://localhost:5000'
+USER_DOESNT_EXIST = 'User with id {} does not exist'
 
 
 class Client(object):
@@ -29,6 +30,8 @@ class Client(object):
     def get(self, prefix, id):
         get_request = self._get(self._get_url(prefix, data=id))
         request_status = (get_request.status_code == codes.ok)
+        if get_request.text == USER_DOESNT_EXIST.format(id):
+            raise exc.RequestException(USER_DOESNT_EXIST.format(id))
         if request_status:
             return get_request.json()
         else:
