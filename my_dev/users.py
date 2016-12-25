@@ -7,9 +7,10 @@ class Users(object):
         self.client = client.Client()
         self.prefix = '/users'
 
-    def create(self, username, email):
+    def create(self, username, password, email):
         data = {
             "username": username,
+            "password": password,
             "email": email
         }
         request_create = self.client.post(self.prefix, data=data)

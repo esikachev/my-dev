@@ -1,9 +1,16 @@
 import os
-
-import argparse
 from getpass import getpass
 
-from my_dev import 
+import argparse
+from oslo_config import cfg
+
+from my_dev import config
+from my_dev import users
+from my_dev import utils
+
+config.parse_config()
+
+CONF = cfg.CONF
 
 
 def main():
@@ -21,8 +28,14 @@ def main():
 
     command_arguments = args.command
     init = args.init
-
+    username = args.username
+    email = args.email
     if init:
-        username = raw_input("Insert the username: ")
-        email = raw_input("Insert the e-mail: ")
+        username = username if username else raw_input("Insert the username: ")
+        password = getpass()
+        email = email if email else raw_input("Insert the e-mail: ")
 
+        user = users.Users()
+        user.create(username, password, email)
+       
+        utils.write_to_config(username, CONF.host)
