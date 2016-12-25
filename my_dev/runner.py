@@ -8,8 +8,6 @@ from my_dev import config
 from my_dev import users
 from my_dev import utils
 
-config.parse_config()
-
 CONF = cfg.CONF
 
 
@@ -21,6 +19,8 @@ def main():
                         help="Init basic config")
     parser.add_argument('--username', '-u', default=None, nargs='?',
                         help='Specify username')
+    parser.add_argument('--password', '-p', default=None, nargs='?',
+                        help='Specify password')
     parser.add_argument('--email', '-e', default=None, nargs='?',
                         help='Specify e-mail')
      
@@ -30,9 +30,11 @@ def main():
     init = args.init
     username = args.username
     email = args.email
+    password = args.password
+
     if init:
         username = username if username else raw_input("Insert the username: ")
-        password = getpass()
+        password = password if password else getpass()
         email = email if email else raw_input("Insert the e-mail: ")
 
         user = users.Users()
