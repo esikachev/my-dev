@@ -1,6 +1,9 @@
+import sys
+
 import testtools
 
 import my_dev.users as users
+from my_dev import runner
 
 
 class TestClient(testtools.TestCase):
@@ -15,3 +18,8 @@ class TestClient(testtools.TestCase):
         user_by_name = self.user.get(user['username'])
         self.assertEqual(user_by_id, user_by_name)
         self.user.delete(user['id'])
+
+    def test_init(self):
+        sys.argv = ['my_dev/runner.py',
+                    'my', 'init', '-u', 'us', '-p', 'pass', '-e', 'email']
+        runner.main()
