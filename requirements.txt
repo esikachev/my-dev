@@ -3,7 +3,7 @@
 # process, which may cause wedges in the gate later.
 
 pbr>=1.6 # Apache-2.0
-requests>=2.12.4
 
 argparse
 oslo.config
+requests>=2.12.4
