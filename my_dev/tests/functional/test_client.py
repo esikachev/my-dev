@@ -21,3 +21,6 @@ class TestClient(testtools.TestCase):
         sys.argv = ['my_dev/runner.py',
                     'my', 'init', '-u', 'us', '-p', 'pass', '-e', 'email']
         runner.main()
+
+        # we need this line for travis-ci
+        print "Test: init - passed"
