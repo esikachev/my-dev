@@ -29,11 +29,12 @@ def main():
     command_arguments = args.command
     init = args.init
     username = args.username
+    password = args.password
     email = args.email
     
     if init:
         username = username if username else raw_input("Insert the username: ")
-        password = getpass()
+        password = password if password else getpass()
         email = email if email else raw_input("Insert the e-mail: ")
 
         user = users.Users()
