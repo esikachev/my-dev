@@ -6,6 +6,7 @@ from requests import post
 
 URL = 'http://localhost:5000'
 USER_DOESNT_EXIST = 'User with id {} does not exist'
+USER_EXIST_MSG = 'User exist with {}: {}'
 
 
 class Client(object):
@@ -22,6 +23,11 @@ class Client(object):
     def post(self, prefix, data):
         create_request = self._post(self._get_url(prefix), json=data)
         request_status = (create_request.status_code == codes.ok)
+        if (create_request.text == USER_EXIST_MSG.format('username',
+                                                         data['username'])
+            or create_request.text == USER_EXIST_MSG.format('email',
+                                                            data['email'])):
+            raise exc.RequestException(create_request.text)
         if request_status:
             return create_request.json()
         else:
