@@ -4,9 +4,9 @@ from requests import get
 from requests import exceptions as exc
 from requests import post
 
+from my_dev import config
+
 URL = 'http://localhost:5000'
-USER_DOESNT_EXIST = 'User with id {} does not exist'
-USER_EXIST_MSG = 'User exist with {}: {}'
 
 
 class Client(object):
@@ -23,10 +23,10 @@ class Client(object):
     def post(self, prefix, data):
         create_request = self._post(self._get_url(prefix), json=data)
         request_status = (create_request.status_code == codes.ok)
-        if (create_request.text == USER_EXIST_MSG.format('username',
-                                                         data['username'])
-            or create_request.text == USER_EXIST_MSG.format('email',
-                                                            data['email'])):
+        if (create_request.text == config.USER_EXIST_MSG.format(
+                'username', data['username'])
+            or create_request.text == config.USER_EXIST_MSG.format(
+                'email', data['email'])):
             raise exc.RequestException(create_request.text)
         if request_status:
             return create_request.json()
@@ -36,8 +36,8 @@ class Client(object):
     def get(self, prefix, id):
         get_request = self._get(self._get_url(prefix, data=id))
         request_status = (get_request.status_code == codes.ok)
-        if get_request.text == USER_DOESNT_EXIST.format(id):
-            raise exc.RequestException(USER_DOESNT_EXIST.format(id))
+        if get_request.text == config.USER_DOESNT_EXIST.format(id):
+            raise exc.RequestException(get_request.text)
         if request_status:
             return get_request.json()
         else:
@@ -46,6 +46,8 @@ class Client(object):
     def delete(self, prefix, id):
         delete_request = self._delete(self._get_url(prefix, data=id))
         request_status = (delete_request.status_code == codes.ok)
+        if delete_request.text == config.UNABLE_TO_DELETE_USER.format(id):
+            raise exc.RequestException(delete_request.text)
         if request_status:
             return delete_request.json()
         else:
