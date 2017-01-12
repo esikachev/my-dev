@@ -20,6 +20,10 @@ for location in (os.curdir, os.path.expanduser("~")):
     if os.path.isfile(config):
         CONF(['--config-file', config])
 
+USER_DOESNT_EXIST = "User with id {} does not exist"
+USER_EXIST_MSG = "User exist with {}: {}"
+UNABLE_TO_DELETE_USER = "Can not delete user {}: it does't exist"
+
 
 def list_opts():
     return {'DEFAULT': opts}
