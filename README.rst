@@ -1,7 +1,7 @@
 My-dev
 ========
-.. image:: https://travis-ci.org/esikachev/my-dev.svg?branch=master
-    :target: https://travis-ci.org/esikachev/my-dev
+.. image:: https://travis-ci.org/esikachev/my-dev-client.svg?branch=master
+    :target: https://travis-ci.org/esikachev/my-dev-client
 
 
 **My-dev information**
