@@ -1,4 +1,4 @@
-from oslo_utils import uuidutils
+from oslo.utils import uuidutils
 
 
 def rand_name(name=''):
