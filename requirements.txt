@@ -4,6 +4,7 @@
 
 pbr>=1.6 # Apache-2.0
 requests>=2.12.4
-oslo.config>=3.21.0
+oslo_utils>=3.21.0
 
 argparse
+oslo.config
