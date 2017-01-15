@@ -8,21 +8,18 @@ CONF = cfg.CONF
 
 opts = [
     cfg.StrOpt('host',
-               default='http://localhost:5000',
+               default='http://127.0.0.1:5000',
                help='Url of server with DB'),
     cfg.StrOpt('username',
                help='Username for my_dev')
 ]
 
 CONF.register_opts(opts)
+for location in (os.curdir, os.path.expanduser("~")):
+    config = os.path.join(location, ".my.conf")
+    if os.path.isfile(config):
+        CONF(['--config-file', '/Users/esikachev/.my.conf'])
 
 
 def list_opts():
     return {'DEFAULT': opts}
-
-
-def parse_config():
-    for location in (os.curdir, os.path.expanduser("~")):
-        config = os.path.join(location, ".my.conf")
-        if os.path.isfile(config):
-            CONF(project='my-dev', default_config_files=[config])
