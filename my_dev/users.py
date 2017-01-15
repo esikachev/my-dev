@@ -1,10 +1,9 @@
 import client
 
 
-class Users(object):
+class Users(Client):
 
     def __init__(self):
-        self.client = client.Client()
         self.prefix = '/users'
 
     def create(self, username, email, password):
@@ -13,13 +12,13 @@ class Users(object):
             "email": email,
             "password": password
         }
-        request_create = self.client.post(self.prefix, data=data)
+        request_create = self.post(self.prefix, data=data)
         return request_create
 
     def get(self, user_id):
-        request_get = self.client.get(self.prefix, user_id)
+        request_get = self.get(self.prefix, user_id)
         return request_get
 
     def delete(self, user_id):
-        request_delete = self.client.delete(self.prefix, user_id)
+        request_delete = self.delete(self.prefix, user_id)
         return request_delete
