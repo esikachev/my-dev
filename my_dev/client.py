@@ -23,9 +23,9 @@ class Client(object):
     def post(self, prefix, data):
         create_request = self._post(self._get_url(prefix), json=data)
         request_status = (create_request.status_code == codes.ok)
-        if (create_request.text == config.USER_EXIST_MSG.format(
+        if (create_request.text == config.USER_EXISTS.format(
                 'username', data['username'])
-            or create_request.text == config.USER_EXIST_MSG.format(
+            or create_request.text == config.USER_EXISTS.format(
                 'email', data['email'])):
             raise exc.RequestException(create_request.text)
         if request_status:
@@ -46,7 +46,7 @@ class Client(object):
     def delete(self, prefix, id):
         delete_request = self._delete(self._get_url(prefix, data=id))
         request_status = (delete_request.status_code == codes.ok)
-        if delete_request.text == config.UNABLE_TO_DELETE_USER.format(id):
+        if delete_request.text == config.USER_DOESNT_EXIST.format(id):
             raise exc.RequestException(delete_request.text)
         if request_status:
             return delete_request.json()
