@@ -11,5 +11,7 @@ class TestClient(testtools.TestCase):
 
     def test_client(self):
         user = self.user.create('test-user', 'user@user.com', 'password')
-        self.user.get(user['id'])
+        id = self.user.get(user['id'])
+        name = self.user.get(user['username'])
+        self.assertEqual(id, name)
         self.user.delete(user['id'])
