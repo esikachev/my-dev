@@ -23,3 +23,7 @@ class Users(object):
     def delete(self, user_id):
         request_delete = self.client.delete(self.prefix, user_id)
         return request_delete
+
+    def get_id(self, name):
+        request_get = self.client.get(self.prefix, name)
+        return request_get
