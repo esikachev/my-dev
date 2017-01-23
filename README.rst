@@ -39,3 +39,7 @@ This is a utility for developers.
 
     $ my ssh controller
 ..
+
+**Contacts**
+
+You can contact us via mailing list: ``my-dev@googlegroups.com``
