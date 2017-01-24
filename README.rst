@@ -49,3 +49,7 @@ This is a utility for developers.
    
     $ my init
 ..
+
+**Contacts**
+
+You can contact us via mailing list: ``my-dev@googlegroups.com``
