@@ -46,8 +46,23 @@ This is a utility for developers.
 
 .. sourcecode:: console
    
-    $ my init
+    $ my --init
 ..
+
+2. Try to connect to any host in format:
+
+.. sourcecode:: console
+   
+    $ my ssh host_user@host
+..
+
+3. Use ``my`` for connecting to host in the future:
+
+.. sourcecode:: console
+   
+    $ my ssh host
+..
+
 
 **Contacts**
 
