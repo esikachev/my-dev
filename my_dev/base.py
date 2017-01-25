@@ -22,7 +22,7 @@ class Base(object):
         login, host = parser.parse_ssh(self.args)
         user_id = user.get_id(CONF.username)
         client = ssh.Ssh(user_id)
-        # TODO(esikachev): Remove try/except when task #44 will be fixed
+        # TODO(esikachev): Remove try/except when server task #44 will be fixed
         try:
             client.get(host)
         except requests.exceptions.RequestException:
