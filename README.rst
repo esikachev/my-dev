@@ -45,7 +45,7 @@ This is a utility for developers.
 1. Init your account
 
 .. sourcecode:: console
-   
+
     $ my --init
 ..
 
@@ -62,7 +62,6 @@ This is a utility for developers.
    
     $ my ssh host
 ..
-
 
 **Contacts**
 
