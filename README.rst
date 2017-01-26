@@ -40,6 +40,16 @@ This is a utility for developers.
     $ my ssh controller
 ..
 
+
+**How to use**
+
+1. Init your account
+
+.. sourcecode:: console
+   
+    $ my init
+..
+
 **Contacts**
 
 You can contact us via mailing list: ``my-dev@googlegroups.com``
