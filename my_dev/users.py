@@ -26,4 +26,4 @@ class Users(object):
 
     def get_id(self, name):
         request_get = self.client.get(self.prefix, name)
-        return request_get
+        return request_get['id']

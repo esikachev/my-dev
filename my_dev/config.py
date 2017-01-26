@@ -15,14 +15,11 @@ opts = [
 ]
 
 CONF.register_opts(opts)
+for location in (os.curdir, os.path.expanduser("~")):
+    config = os.path.join(location, ".my.conf")
+    if os.path.isfile(config):
+        CONF(['--config-file', '/Users/esikachev/.my.conf'])
 
 
 def list_opts():
     return {'DEFAULT': opts}
-
-
-def parse_config():
-    for location in (os.curdir, os.path.expanduser("~")):
-        config = os.path.join(location, ".my.conf")
-        if os.path.isfile(config):
-            CONF(project='my-dev', default_config_files=[config])

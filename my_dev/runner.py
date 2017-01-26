@@ -4,6 +4,7 @@ from getpass import getpass
 import argparse
 from oslo_config import cfg
 
+from my_dev import base
 from my_dev import config
 from my_dev import users
 from my_dev import utils
@@ -15,7 +16,7 @@ def main():
     parser = argparse.ArgumentParser(description="My-dev utility.")
     parser.add_argument('command', help="Command for running via my-dev",
                         nargs='*', default=[])
-    parser.add_argument('init', default=False, action='store_true',
+    parser.add_argument('--init', default=False, action='store_true',
                         help="Init basic config")
     parser.add_argument('--username', '-u', default=None, nargs='?',
                         help='Specify username')
@@ -23,7 +24,6 @@ def main():
                         help='Specify password')
     parser.add_argument('--email', '-e', default=None, nargs='?',
                         help='Specify e-mail')
-     
     args = parser.parse_args()
 
     command_arguments = args.command
@@ -31,7 +31,7 @@ def main():
     username = args.username
     password = args.password
     email = args.email
-    
+
     if init:
         username = username if username else raw_input("Insert the username: ")
         password = password if password else getpass()
@@ -39,7 +39,10 @@ def main():
 
         user = users.Users()
         user.create(username, password, email)
-       
+
         utils.write_to_config(username, CONF.host)
 
         print "Account created. Config too."
+        return
+
+    command = base.Base(command_arguments)
