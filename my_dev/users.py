@@ -7,11 +7,11 @@ class Users(object):
         self.client = client.Client()
         self.prefix = '/users'
 
-    def create(self, username, email, password):
+    def create(self, username, password, email):
         data = {
             "username": username,
-            "email": email,
-            "password": password
+            "password": password,
+            "email": email
         }
         request_create = self.client.post(self.prefix, data=data)
         return request_create
@@ -26,4 +26,4 @@ class Users(object):
 
     def get_id(self, name):
         request_get = self.client.get(self.prefix, name)
-        return request_get
+        return request_get['id']

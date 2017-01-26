@@ -1,3 +1,4 @@
+from oslo_config import cfg
 from requests import codes
 from requests import delete
 from requests import get
@@ -7,6 +8,7 @@ from requests import post
 from my_dev import config
 
 URL = 'http://localhost:5000'
+CONF = cfg.CONF
 
 
 class Client(object):
@@ -54,4 +56,4 @@ class Client(object):
             raise exc.RequestException("Bad DELETE request")
 
     def _get_url(self, prefix, data=''):
-        return '%s%s/%s' % (URL, prefix, data)
+        return '%s%s/%s' % (CONF.host, prefix, data)

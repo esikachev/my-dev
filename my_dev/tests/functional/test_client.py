@@ -1,8 +1,10 @@
 from requests import exceptions as exc
 import testtools
+import sys
 
 from my_dev.tests.functional import utils
 import my_dev.users as users
+from my_dev import runner
 
 
 class TestClient(testtools.TestCase):
@@ -38,3 +40,9 @@ class TestClient(testtools.TestCase):
                     msg_exist = True
             if not msg_exist:
                 raise BaseException('User exist with username: %s' % user_name)
+    
+    def test_init(self):
+        sys.argv = ['my_dev/runner.py',
+                    'my', '--init', '-u', 'user', '-p', 'password',
+                    '-e', 'email']
+        runner.main()

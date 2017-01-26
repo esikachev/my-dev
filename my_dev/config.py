@@ -14,6 +14,10 @@ opts = [
 ]
 
 CONF.register_opts(opts)
+for location in (os.curdir, os.path.expanduser("~")):
+    config = os.path.join(location, ".my.conf")
+    if os.path.isfile(config):
+        CONF(['--config-file', '/Users/esikachev/.my.conf'])
 
 USER_DOESNT_EXIST = "User with id {} does not exist"
 USER_EXISTS = "User exist with {}: {}"
@@ -21,10 +25,3 @@ USER_EXISTS = "User exist with {}: {}"
 
 def list_opts():
     return {'DEFAULT': opts}
-
-
-def parse_config():
-    for location in (os.curdir, os.path.expanduser("~")):
-        config = os.path.join(location, ".my.conf")
-        if os.path.isfile(config):
-            CONF(project='my-dev', default_config_files=[config])

@@ -40,6 +40,29 @@ This is a utility for developers.
     $ my ssh controller
 ..
 
+**How to use**
+
+1. Init your account
+
+.. sourcecode:: console
+
+    $ my --init
+..
+
+2. Try to connect to any host in format:
+
+.. sourcecode:: console
+   
+    $ my ssh host_user@host
+..
+
+3. Use ``my`` for connecting to host in the future:
+
+.. sourcecode:: console
+   
+    $ my ssh host
+..
+
 **Contacts**
 
 You can contact us via mailing list: ``my-dev@googlegroups.com``
