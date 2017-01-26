@@ -21,5 +21,6 @@ class TestClient(testtools.TestCase):
 
     def test_init(self):
         sys.argv = ['my_dev/runner.py',
-                    'my', 'init', '-u', 'user', '-p', 'password', '-e', 'email']
+                    'my', 'init', '-u', 'user', '-p', 'password',
+                    '-e', 'email']
         runner.main()
