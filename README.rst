@@ -1,21 +1,26 @@
 My-dev
-========
+======
 .. image:: https://travis-ci.org/esikachev/my-dev-client.svg?branch=master
     :target: https://travis-ci.org/esikachev/my-dev-client
 
 
-**My-dev information**
+My-dev information
+------------------
 
 This is a utility for developers.
 
-**Preparing**
+Preparing
+---------
 
 You need to install `sshpass` in your system.
+
 For macos: ``brew install https://raw.githubusercontent.com/kadwanev/bigboybrew/master/Library/Formula/sshpass.rb``
+
 For ubuntu: ``apt-get install sshpass``
 
 
-**Installation**
+Installation
+------------
 
 1. Clone project.
 
@@ -37,7 +42,8 @@ For ubuntu: ``apt-get install sshpass``
 ..
 
 
-**How to use**
+How to use
+----------
 
 1. Init your account
 
@@ -60,6 +66,7 @@ For ubuntu: ``apt-get install sshpass``
     $ my ssh host_user@host
 ..
 
-**Contacts**
+Contacts
+--------
 
 You can contact us via mailing list: ``my-dev@googlegroups.com``
