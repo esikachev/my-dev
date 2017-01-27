@@ -22,15 +22,11 @@ class Base(object):
         login, host = parser.parse_ssh(self.args)
         user_id = user.get_id(CONF.username)
         client = ssh.Ssh(user_id)
-        # TODO(esikachev): Remove try/except when server task #44 will be fixed
-        try:
-            client.get(host)
-        except requests.exceptions.RequestException:
+        if client.get(host).get('status_code') == 404:
             password = getpass('Enter the password for ssh connection: ')
             client.create(ssh_username=login, host=host,
                           ssh_password=password)
-        finally:
-            ssh_get = client.get(host)
-            self.cmd.ssh_cmd(ssh_username=ssh_get['ssh_username'],
-                             ssh_password=ssh_get['ssh_password'],
-                             host=ssh_get['host'])
+        ssh_get = client.get(host)
+        self.cmd.ssh_cmd(ssh_username=ssh_get['ssh_username'],
+                         ssh_password=ssh_get['ssh_password'],
+                         host=ssh_get['host'])
