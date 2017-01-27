@@ -18,7 +18,7 @@ CONF.register_opts(opts)
 for location in (os.curdir, os.path.expanduser("~")):
     config = os.path.join(location, ".my.conf")
     if os.path.isfile(config):
-        CONF(['--config-file', '/Users/esikachev/.my.conf'])
+        CONF(['--config-file', config])
 
 
 def list_opts():
