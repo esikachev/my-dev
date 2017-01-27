@@ -3,7 +3,7 @@ import os
 
 class Cmd(object):
     def ssh_cmd(self, ssh_username, ssh_password, host):
-        base_cmd = ('sshpass -p {ssh_password} '
+        base_cmd = ('sshpass -p {ssh_password} ssh '
                     '{ssh_username}@{host}'.format(
                         ssh_username=ssh_username,
                         ssh_password=ssh_password,
