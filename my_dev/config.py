@@ -17,7 +17,7 @@ CONF.register_opts(opts)
 for location in (os.curdir, os.path.expanduser("~")):
     config = os.path.join(location, ".my.conf")
     if os.path.isfile(config):
-        CONF(['--config-file', '/Users/esikachev/.my.conf'])
+        CONF(['--config-file', config])
 
 USER_DOESNT_EXIST = "User with id {} does not exist"
 USER_EXISTS = "User exist with {}: {}"
