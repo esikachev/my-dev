@@ -1,15 +1,26 @@
 My-dev
-========
+======
 .. image:: https://travis-ci.org/esikachev/my-dev-client.svg?branch=master
     :target: https://travis-ci.org/esikachev/my-dev-client
 
 
-**My-dev information**
+My-dev information
+------------------
 
 This is a utility for developers.
 
+Preparing
+---------
 
-**Installation**
+You need to install `sshpass` in your system.
+
+For macos: ``brew install https://raw.githubusercontent.com/kadwanev/bigboybrew/master/Library/Formula/sshpass.rb``
+
+For ubuntu: ``apt-get install sshpass``
+
+
+Installation
+------------
 
 1. Clone project.
 
@@ -30,17 +41,9 @@ This is a utility for developers.
     $ tox -e venv --notest
 ..
 
-3. Create a config-file in home-directory or in project-directory ``.my.conf``
-   with host and username. Example of config-file you can found in ``etc/my_dev/.my.conf.sample``.
 
-3. Try to use MY. For example:
-
-.. sourcecode:: console
-
-    $ my ssh controller
-..
-
-**How to use**
+How to use
+----------
 
 1. Init your account
 
@@ -60,9 +63,10 @@ This is a utility for developers.
 
 .. sourcecode:: console
    
-    $ my ssh host
+    $ my ssh host_user@host
 ..
 
-**Contacts**
+Contacts
+--------
 
 You can contact us via mailing list: ``my-dev@googlegroups.com``
