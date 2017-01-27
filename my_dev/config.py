@@ -1,5 +1,4 @@
 import os
-import sys
 
 from oslo_config import cfg
 
@@ -19,6 +18,9 @@ for location in (os.curdir, os.path.expanduser("~")):
     config = os.path.join(location, ".my.conf")
     if os.path.isfile(config):
         CONF(['--config-file', '/Users/esikachev/.my.conf'])
+
+USER_DOESNT_EXIST = "User with id {} does not exist"
+USER_EXISTS = "User exist with {}: {}"
 
 
 def list_opts():
