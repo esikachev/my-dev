@@ -16,7 +16,9 @@ class TestClient(testtools.TestCase):
 
     def test_client(self):
         user_name = utils.rand_name('test')
-        user = self.user.create(user_name, 'user@user.com', 'password')
+        user_email = utils.rand_name('test')
+        user_pass = utils.rand_name('test')
+        user = self.user.create(user_name, user_email, user_pass)
         self.user.get(user['id'])
         user = self.user.create('test-user', 'user@user.com', 'password')
         user_by_id = self.user.get(user['id'])
@@ -27,19 +29,14 @@ class TestClient(testtools.TestCase):
     def test_create_already_existed_user(self):
         msg_exist = None
         user_name = utils.rand_name('test')
+        user_email = utils.rand_name('test')
+        user_pass = utils.rand_name('test')
         error_message = "User exist with username: %s" % user_name
-        self.user.create(user_name, 'user@user.com', 'password')
-        try:
-            self.user.create(user_name, 'new@user.com', 'qwerty')
-        except exc.RequestException as e:
-            output_msg = str(e).splitlines()
-            for msg in output_msg:
-                if msg.lower() == error_message.lower():
-                    self.assertEqual(error_message.lower(), msg.lower())
-                    msg_exist = True
-            if not msg_exist:
-                raise BaseException('User with already existing username %s '
-                                    'have been created' % user_name)
+        self.user.create(user_name, user_email, user_pass)
+        new_user_email = utils.rand_name('test')
+        new_user_pass = utils.rand_name('test')
+        response = self.user.create(user_name, new_user_email, new_user_pass)
+        print response.status_code,
 
     def test_init(self):
         sys.argv = ['my_dev/runner.py',
