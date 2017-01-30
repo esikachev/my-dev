@@ -36,7 +36,7 @@ class TestClient(testtools.TestCase):
         new_user_email = utils.rand_name('test')
         new_user_pass = utils.rand_name('test')
         response = self.user.create(user_name, new_user_email, new_user_pass)
-        print response.status_code,
+        print response.status_code
 
     def test_init(self):
         sys.argv = ['my_dev/runner.py',
