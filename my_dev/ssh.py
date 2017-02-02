@@ -1,7 +1,5 @@
 import client
 
-from my_dev import users
-
 
 class Ssh(object):
 
@@ -27,5 +25,5 @@ class Ssh(object):
         return request_get
 
     def delete(self, ssh_id):
-        request_delete = self.client.delete(self.prefix, user_id)
+        request_delete = self.client.delete(self.prefix, ssh_id)
         return request_delete

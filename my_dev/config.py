@@ -1,5 +1,4 @@
 import os
-import sys
 
 from oslo_config import cfg
 

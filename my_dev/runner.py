@@ -1,11 +1,9 @@
-import os
 from getpass import getpass
 
 import argparse
 from oslo_config import cfg
 
 from my_dev import base
-from my_dev import config
 from my_dev import users
 from my_dev import utils
 
@@ -45,4 +43,4 @@ def main():
         print "Account created. Config too."
         return
 
-    command = base.Base(command_arguments)
+    base.Base(command_arguments)

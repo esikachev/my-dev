@@ -2,9 +2,9 @@ import sys
 
 import testtools
 
+from my_dev import runner
 from my_dev.tests.functional import utils
 import my_dev.users as users
-from my_dev import runner
 
 
 class TestClient(testtools.TestCase):
