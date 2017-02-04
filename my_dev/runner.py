@@ -4,6 +4,7 @@ import argparse
 from oslo_config import cfg
 
 from my_dev import base
+from my_dev import config
 from my_dev import users
 from my_dev import utils
 
@@ -29,6 +30,8 @@ def main():
     username = args.username
     password = args.password
     email = args.email
+
+    config.list_opts()
 
     if init:
         username = username if username else raw_input("Insert the username: ")
