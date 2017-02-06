@@ -32,4 +32,4 @@ class Base(object):
                          host=ssh_get['host'])
 
     def enter_pass(self, message):
-         return getpass('Enter the password for ssh connection: ')
+        return getpass(message)

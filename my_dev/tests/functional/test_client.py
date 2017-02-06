@@ -1,5 +1,3 @@
-import sys
-
 import testtools
 
 from my_dev.tests import utils
