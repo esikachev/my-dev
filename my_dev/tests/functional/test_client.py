@@ -3,10 +3,9 @@ import sys
 import testtools
 
 from my_dev import runner
+from my_dev import ssh
 from my_dev.tests.functional import base
 from my_dev.tests.functional import utils
-from my_dev import runner
-from my_dev import ssh
 from my_dev import users
 
 
