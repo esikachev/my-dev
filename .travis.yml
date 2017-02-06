@@ -22,12 +22,7 @@ matrix:
       sudo: required
 
 script:
-  - if [[ $TOX_ENV == 'cli' ]];
-    then
-      tox -e $TOX_ENV
-    else
-      my-dev-ci-config/runner.sh
-    fi
+  - if [[ $TOX_ENV == 'cli' ]]; then tox -e $TOX_ENV; fi
 
 after_script:
   - if [ -f my-dev-server/my-dev-server-logs ]; then
