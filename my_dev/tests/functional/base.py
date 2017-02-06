@@ -24,6 +24,6 @@ class TestBase(testtools.TestCase):
                    ssh_password=utils.rand_name('password'),
                    host=utils.rand_name('host'),
                    alias=utils.rand_name('alias')):
-        ssh = ssh.Ssh(user_id)
-        return ssh.create(host=host, ssh_username=ssh_username,
-                          ssh_password=ssh_password, alias=alias)
+        ssh_client = ssh.Ssh(user_id)
+        return ssh_client.create(host=host, ssh_username=ssh_username,
+                                 ssh_password=ssh_password, alias=alias)
