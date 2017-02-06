@@ -1,11 +1,10 @@
 from getpass import getpass
 from oslo_config import cfg
-import requests
 
+from my_dev import cmd
 from my_dev import parser
 from my_dev import ssh
 from my_dev import users
-from my_dev import cmd
 
 CONF = cfg.CONF
 

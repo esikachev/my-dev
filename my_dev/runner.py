@@ -1,4 +1,3 @@
-import os
 from getpass import getpass
 
 import argparse
@@ -32,6 +31,8 @@ def main():
     password = args.password
     email = args.email
 
+    config.list_opts()
+
     if init:
         username = username if username else raw_input("Insert the username: ")
         password = password if password else getpass()
@@ -45,4 +46,4 @@ def main():
         print "Account created. Config too."
         return
 
-    command = base.Base(command_arguments)
+    base.Base(command_arguments)
