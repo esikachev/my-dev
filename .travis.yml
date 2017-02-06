@@ -17,9 +17,17 @@ matrix:
     - python: 2.7
       env: TOX_ENV=functional
       sudo: required
+    - python: 2.7
+      env: TOX_ENV=cli
+      sudo: required
 
 script:
-  - my-dev-ci-config/runner.sh
+  - if [[ $TOX_ENV == 'cli' ]];
+    then
+      tox -e $TOX_ENV
+    else
+      my-dev-ci-config/runner.sh
+    fi
 
 after_script:
   - if [ -f my-dev-server/my-dev-server-logs ]; then
