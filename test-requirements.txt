@@ -3,6 +3,7 @@
 # process, which may cause wedges in the gate later.
 
 flake8
+mock
 os-testr>=0.4.1 # Apache-2.0
 oslo.utils
 testtools>=1.4.0 # MIT

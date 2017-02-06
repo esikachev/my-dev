@@ -2,8 +2,7 @@ import sys
 
 import testtools
 
-from my_dev import runner
-from my_dev.tests.functional import utils
+from my_dev.tests import utils
 import my_dev.users as users
 
 
@@ -34,9 +33,3 @@ class TestClient(testtools.TestCase):
         self.assertEqual(400, response.get('status_code'))
         self.assertEqual('User exist with: %s' % user_name,
                          response.get('message'))
-
-    def test_init(self):
-        sys.argv = ['my_dev/runner.py',
-                    'my', '--init', '-u', 'user', '-p', 'password',
-                    '-e', 'email']
-        runner.main()
