@@ -23,9 +23,12 @@ class TestCli(testtools.TestCase):
     def test_init(self):
         self.init_user()
 
-    @mock.patch('getpass.getpass')
-    def test_create_ssh(self, mock_getpass):
+    @mock.patch('my_dev.base.Base.enter_pass', return_value='test_pass')
+    def test_workflow(self, mock_pass):
         self.init_user()
-        sys.argv = ['my', 'ssh', 'qa@172.18.79.150']
-        mock_getpass.return_value = 'swordfish'
+        sys.argv = ['my', 'ssh', 'user@127.0.0.1']
+        runner.main()
+        sys.argv = ['my', 'ssh', '127.0.0.1']
+        runner.main()
+        sys.argv = ['my', 'ssh', 'user@127.0.0.1']
         runner.main()
