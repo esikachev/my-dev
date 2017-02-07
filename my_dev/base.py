@@ -24,8 +24,8 @@ class Base(object):
         if client.get(host).get('status_code') == 404:
             password = self.enter_pass('Enter the password for ssh '
                                        'connection: ')
-            client.create(ssh_username=login, host=host,
-                          ssh_password=password)
+            print client.create(ssh_username=login, host=host,
+                                ssh_password=password)
         ssh_get = client.get(host)
         self.cmd.ssh_cmd(ssh_username=ssh_get['ssh_username'],
                          ssh_password=ssh_get['ssh_password'],
