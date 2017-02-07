@@ -1,12 +1,7 @@
 import sys
 
-import testtools
-
 from my_dev import runner
-from my_dev import ssh
 from my_dev.tests.functional import base
-from my_dev.tests.functional import utils
-from my_dev import users
 
 
 class TestClient(base.TestBase):
@@ -27,6 +22,7 @@ class TestClient(base.TestBase):
     def test_create_ssh(self):
         user = self.create_user()
         ssh = self.create_ssh(user['id'])
+        self.asserEqual(user['id'], ssh['user_id'])
 
     def test_init(self):
         sys.argv = ['my_dev/runner.py',

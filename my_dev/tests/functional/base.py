@@ -1,11 +1,7 @@
-
-import sys
-
 import testtools
 
 from my_dev.tests.functional import utils
 from my_dev import users
-from my_dev import runner
 from my_dev import ssh
 
 
