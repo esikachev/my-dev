@@ -22,7 +22,8 @@ class Base(object):
         user_id = user.get_id(CONF.username)
         client = ssh.Ssh(user_id)
         if client.get(host).get('status_code') == 404:
-            password = getpass('Enter the password for ssh connection: ')
+            password = self.enter_pass('Enter the password for ssh '
+                                       'connection: ')
             alias = raw_input('Would you like to use alias for this '
                               'connection?: ')
             client.create(ssh_username=login, host=host,
