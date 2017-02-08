@@ -22,7 +22,7 @@ class TestClient(base.TestBase):
     def test_create_ssh(self):
         user = self.create_user()
         ssh = self.create_ssh(user['id'])
-        self.asserEqual(user['id'], ssh['user_id'])
+        self.assertEqual(user['id'], ssh['user_id'])
 
     def test_init(self):
         sys.argv = ['my_dev/runner.py',
