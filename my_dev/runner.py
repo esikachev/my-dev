@@ -31,8 +31,6 @@ def main():
     password = args.password
     email = args.email
 
-    config.list_opts()
-
     if init:
         username = username if username else raw_input("Insert the username: ")
         password = password if password else getpass()
@@ -46,4 +44,5 @@ def main():
         print "Account created. Config too."
         return
 
+    config.parse_config()
     base.Base(command_arguments)

@@ -19,16 +19,21 @@ class TestCli(testtools.TestCase):
                     '-e', self.email]
         runner.main()
 
-    def test_init(self):
-        self.init_user()
-
+    @mock.patch('os.system')
     @mock.patch('__builtin__.raw_input', return_value='alias')
     @mock.patch('my_dev.base.Base.enter_pass', return_value='test_pass')
-    def test_workflow(self, mock_pass, mock_alias):
+    def test_workflow(self, mock_pass, mock_alias, mock_os):
+
         self.init_user()
         sys.argv = ['my', 'ssh', 'user@127.0.0.1']
         runner.main()
+        mock_os.assert_called_with('sshpass -p test_pass ssh user@127.0.0.1')
         sys.argv = ['my', 'ssh', '127.0.0.1']
         runner.main()
+        mock_os.assert_called_with('sshpass -p test_pass ssh user@127.0.0.1')
         sys.argv = ['my', 'ssh', 'user@127.0.0.1']
         runner.main()
+        mock_os.assert_called_with('sshpass -p test_pass ssh user@127.0.0.1')
+        sys.argv = ['my', 'ssh', 'alias']
+        runner.main()
+        mock_os.assert_called_with('sshpass -p test_pass ssh user@127.0.0.1')
