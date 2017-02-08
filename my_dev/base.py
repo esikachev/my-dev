@@ -32,3 +32,6 @@ class Base(object):
         self.cmd.ssh_cmd(ssh_username=ssh_get['ssh_username'],
                          ssh_password=ssh_get['ssh_password'],
                          host=ssh_get['host'])
+
+    def enter_pass(self, message):
+        return getpass(message)
