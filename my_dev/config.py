@@ -7,7 +7,7 @@ CONF = cfg.CONF
 
 opts = [
     cfg.StrOpt('host',
-               default='http://127.0.0.1:5000',
+               default='http://localhost:5000',
                help='Url of server with DB'),
     cfg.StrOpt('username',
                help='Username for my_dev')
