@@ -1,33 +1,31 @@
-import testtools
+import sys
 
-from my_dev.tests import utils
-import my_dev.users as users
+from my_dev import runner
+from my_dev.tests.functional import base
 
 
-class TestClient(testtools.TestCase):
-
-    def setUp(self):
-        super(TestClient, self).setUp()
-        self.user = users.Users()
-
+class TestClient(base.TestBase):
     def test_client(self):
-        user_name = utils.rand_name('test')
-        user_email = utils.rand_name('test')
-        user_pass = utils.rand_name('test')
-        user = self.user.create(user_name, user_email, user_pass)
+        user = self.create_user()
         user_by_id = self.user.get(user['id'])
         user_by_name = self.user.get(user['username'])
         self.assertEqual(user_by_id, user_by_name)
         self.user.delete(user['id'])
 
     def test_create_already_existed_user(self):
-        user_name = utils.rand_name('test')
-        user_email = utils.rand_name('test')
-        user_pass = utils.rand_name('test')
-        self.user.create(user_name, user_email, user_pass)
-        new_user_email = utils.rand_name('test')
-        new_user_pass = utils.rand_name('test')
-        response = self.user.create(user_name, new_user_email, new_user_pass)
+        user = self.create_user()
+        response = self.create_user(username=user['username'])
         self.assertEqual(400, response.get('status_code'))
-        self.assertEqual('User exist with: %s' % user_name,
+        self.assertEqual('User exist with: %s' % user['username'],
                          response.get('message'))
+
+    def test_create_ssh(self):
+        user = self.create_user()
+        ssh = self.create_ssh(user['id'])
+        self.assertEqual(user['id'], ssh['user_id'])
+
+    def test_init(self):
+        sys.argv = ['my_dev/runner.py',
+                    'my', '--init', '-u', 'user', '-p', 'password',
+                    '-e', 'email']
+        runner.main()
