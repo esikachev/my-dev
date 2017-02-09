@@ -3,6 +3,9 @@ My-dev
 .. image:: https://travis-ci.org/esikachev/my-dev-client.svg?branch=master
     :target: https://travis-ci.org/esikachev/my-dev-client
 
+.. image:: https://coveralls.io/repos/esikachev/my-dev-client/badge.svg
+    :target: https://coveralls.io/r/esikachev/my-dev-client
+
 
 My-dev information
 ------------------
