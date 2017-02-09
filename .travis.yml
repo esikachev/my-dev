@@ -20,6 +20,9 @@ matrix:
     - python: 2.7
       env: TOX_ENV=cli
       sudo: required
+    - python: 2.7
+      env: TOX_ENV=cover
+      sudo: required
 
 script:
   - my-dev-ci-config/runner.sh
@@ -28,3 +31,4 @@ after_script:
   - if [ -f my-dev-server/my-dev-server-logs ]; then
       cat my-dev-server/my-dev-server-logs;
     fi
+  - coveralls

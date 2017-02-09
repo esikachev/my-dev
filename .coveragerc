@@ -1,0 +1,3 @@
+[run]
+omit = my_dev/tests*
+source = my_dev/tests/unit
