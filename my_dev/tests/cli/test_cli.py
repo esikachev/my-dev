@@ -32,7 +32,10 @@ class TestCli(testtools.TestCase):
     @mock.patch('os.system')
     @mock.patch('__builtin__.raw_input', return_value='alias')
     @mock.patch('my_dev.base.Base.enter_pass', return_value='test_pass')
-    def test_workflow(self, mock_pass, mock_alias, mock_os):
+    def test_workflow_host(self, mock_pass, mock_alias, mock_os):
+        sys.argv = ['my', 'ssh', 'user@127.0.0.1']
+        runner.main()
+        mock_os.assert_called_with(self.cmd)
         sys.argv = ['my', 'ssh', '127.0.0.1']
         runner.main()
         mock_os.assert_called_with(self.cmd)
@@ -40,15 +43,10 @@ class TestCli(testtools.TestCase):
     @mock.patch('os.system')
     @mock.patch('__builtin__.raw_input', return_value='alias')
     @mock.patch('my_dev.base.Base.enter_pass', return_value='test_pass')
-    def test_workflow(self, mock_pass, mock_alias, mock_os):
+    def test_workflow_alias(self, mock_pass, mock_alias, mock_os):
         sys.argv = ['my', 'ssh', 'user@127.0.0.1']
         runner.main()
         mock_os.assert_called_with(self.cmd)
-
-    @mock.patch('os.system')
-    @mock.patch('__builtin__.raw_input', return_value='alias')
-    @mock.patch('my_dev.base.Base.enter_pass', return_value='test_pass')
-    def test_workflow(self, mock_pass, mock_alias, mock_os):
         sys.argv = ['my', 'ssh', 'alias']
         runner.main()
         mock_os.assert_called_with(self.cmd)
