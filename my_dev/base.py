@@ -21,13 +21,19 @@ class Base(object):
         login, host = parser.parse_ssh(self.args)
         user_id = user.get_id(CONF.username)
         client = ssh.Ssh(user_id)
-        if client.get(host).get('status_code') == 404:
-            password = getpass('Enter the password for ssh connection: ')
+        ssh_get = client.get(host)
+        if ssh_get.get('status_code') == 404:
+            password = self.enter_pass('Enter the password for ssh '
+                                       'connection: ')
             alias = raw_input('Would you like to use alias for this '
                               'connection?: ')
             client.create(ssh_username=login, host=host,
                           ssh_password=password, alias=alias)
         ssh_get = client.get(host)
+        print ssh_get
         self.cmd.ssh_cmd(ssh_username=ssh_get['ssh_username'],
                          ssh_password=ssh_get['ssh_password'],
                          host=ssh_get['host'])
+
+    def enter_pass(self, message):
+        return getpass(message)

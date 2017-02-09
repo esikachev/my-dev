@@ -14,10 +14,14 @@ opts = [
 ]
 
 CONF.register_opts(opts)
-for location in (os.curdir, os.path.expanduser("~")):
-    config = os.path.join(location, ".my.conf")
-    if os.path.isfile(config):
-        CONF(['--config-file', config])
+
+
+def parse_config():
+    for location in (os.curdir, os.path.expanduser("~")):
+        config = os.path.join(location, ".my.conf")
+        if os.path.isfile(config):
+            CONF(['--config-file', config])
+
 
 USER_DOESNT_EXIST = "User with id {} does not exist"
 USER_EXIST_MSG = "User exist with {}: {}"
