@@ -5,6 +5,5 @@
 flake8
 mock
 os-testr>=0.4.1 # Apache-2.0
-oslo.utils
 pytest-cov
 testtools>=1.4.0 # MIT

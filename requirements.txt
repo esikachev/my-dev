@@ -6,4 +6,5 @@ pbr>=1.6 # Apache-2.0
 
 argparse
 oslo.config
+oslo.utils
 requests>=2.12.4
