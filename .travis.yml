@@ -28,8 +28,8 @@ matrix:
     - language: generic
       os: osx
       env: TOX_ENV=functional
-    - python: 2.7
-      os: linux
+    - language: generic
+      os: osx
       env: TOX_ENV=cli
       sudo: required
     - python: 2.7
