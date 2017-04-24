@@ -1,7 +1,7 @@
 language: python
 
 before_install:
-  - git clone https://github.com/esikachev/my-dev-ci-config
+  - git clone -b es-macosx https://github.com/esikachev/my-dev-ci-config
   - pip install coveralls
 
 services:
@@ -10,18 +10,30 @@ services:
 matrix:
   include:
     - python: 2.7
+      os: linux
       env: TOX_ENV=pep8
       sudo: required
     - python: 2.7
+      os: linux
       env: TOX_ENV=py27
       sudo: required
     - python: 2.7
+      os: linux
       env: TOX_ENV=functional
       sudo: required
     - python: 2.7
+      os: linux
+      env: TOX_ENV=cli
+      sudo: required
+    - language: generic
+      os: osx
+      env: TOX_ENV=functional
+    - python: 2.7
+      os: linux
       env: TOX_ENV=cli
       sudo: required
     - python: 2.7
+      os: linux
       env: TOX_ENV=cover
       sudo: required
 
